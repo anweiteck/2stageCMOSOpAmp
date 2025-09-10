@@ -1,0 +1,17 @@
+name=s1 only_toplevel=false 
+value= "
+
+.lib /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.param VDD=1.8 amp=1m
+.ac dec 20 1 1e12
+
+.control
+run
+plot db(vout/v(v+)) 
+set wr_singlescale
+set wr_vecnames
+wrdata /foss/designs/2stageCMOSOpAmp/sim_data/GainvsFreq/gain(max).txt db(vout/v(v+))
+
+
+.endc
+"

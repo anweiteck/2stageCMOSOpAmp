@@ -1,0 +1,17 @@
+name=s1 only_toplevel=false 
+value= "
+
+.lib /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.param VDD=1.8
+.tran 1u 10m
+.save all
+
+.control
+run
+plot vout
+set wr_singlescale
+set wr_vecnames
+wrdata /foss/designs/2stageCMOSOpAmp/sim_data/SR/SR.txt vout
+
+.endc
+"

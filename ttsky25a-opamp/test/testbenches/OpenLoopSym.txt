@@ -1,0 +1,14 @@
+name=s1 only_toplevel=false 
+value= "
+
+.lib /foss/pdks/sky130A/libs.tech/ngspice/sky130.lib.spice tt
+.param CM=0.8 VDD=1.8 amp=1
+.ac dec 20 1 1e12
+
+.control
+run
+plot db(vout/v(v+)) 
+plot 180*cph(vout)/pi
+
+.endc
+"
