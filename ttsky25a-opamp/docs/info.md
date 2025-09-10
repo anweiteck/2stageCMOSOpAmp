@@ -11,11 +11,14 @@ You can also include images in this folder and reference them in the markdown. E
 
 Simple 2 stage CMOS Op Amp with Miller compensation.
 
+![image info](../schematic.png)
+
 ## How to test
 
-Feed a current of 8uA to Ibias.
-The op amp needs a DC power supply of +1.8V to work
-The differential inputs are V+ and V-, while the output of the op amp is Vout.
+- Feed a current of 8uA to Ibias.
+- Add a 2pF capacitor to Vout, C2 in the schematic is an external capacitor that needs to be added
+- The op amp needs a DC power supply of +1.8V to work
+- The differential inputs are V+ and V-, while the output of the op amp is Vout.
 
 ## External hardware
 
