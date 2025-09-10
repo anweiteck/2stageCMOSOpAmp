@@ -1,6 +1,10 @@
 # 2 Stage CMOS Op Amp
 This project is to create a simple 2 stage CMOS Op Amp with Miller compensation with the SKY130 PDK. This will be the first time I have ever designed an IC, and will also serve as a more or less introductory project into analog electronics.
 
+This project referenced a few other SKY130 Op Amp projects, all of which are linked below:
+- [avsd_opamp](https://github.com/rohinthram/avsd_opamp/tree/main)
+- [dsatizabal_opamp](https://github.com/dsatizabal/tt06-fet-opamp)
+
 ### Calculations
 The calculations I have done to obtain the values of the components is shown in "calculations.xlsx"
 
