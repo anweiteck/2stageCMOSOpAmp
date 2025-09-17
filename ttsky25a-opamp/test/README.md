@@ -59,7 +59,7 @@ With the original value of 3pF, the frequency response looked like below
 
 ![image info](./v1_Cc3pF/GainvsFreq/Frequency%20response%20of%20different%20gains-1.png)
 
-The maxmimum gain is probably around 57dB, GBW is around 4MHz, SR is around 9V/us
+The maxmimum gain is probably around 57dB, BW is around 4MHz, SR is around 9V/us
 
 ### Miller C = 0.5pF, tail current = 5uA
 #### Freq Response
@@ -69,7 +69,7 @@ But as mentioned before, this was too large and I wanted to use a smaller Miller
 
 Note that this time I also tested for a gain of 10dB and 50dB, for whatever reason.
 
-The maximum gain is 58.5dB, GBW is around 4.5MHz.
+The maximum gain is 58.5dB, BW is around 4.5MHz.
 
 #### Samples Waves
 This was also the first time I looked at samples waves across different gains and frequencies. I noticed that a negative DC offset appeared within the output of the op amp. This negative DC offset seemed to increase as gain increased, but was more or less indifferent to changes in frequency. I also noticed some choppy waves tips which I thought was a problem but later learned that this was due to my sample rate when collecting simulation data being too low.
@@ -85,7 +85,7 @@ This was also the first time I looked at samples waves across different gains an
 
 The slew rate ended up about 7V/us, which was not very nice. But more importantly, while looking at the slew rate I noticed that the output of the op amp had spikes on the edges of the square waves. This spikes were relatively huge too, about 0.05V for a 1V square wave. Upon closer inspection, this was a result of instability. This wasn't really a surprise since I had reduced Miller compensation by so much.
 
-Hence the tradeof: If we increase Miller comp, we increase stability, but at the cost of GBW and device size.
+Hence the tradeof: If we increase Miller comp, we increase stability, but at the cost of BW and device size.
 
 ### Miller C = 0.45pF, tail current = 5uA
 With a slightly lower Miller comp value, we get pretty much the same results. However, I tested this with a tail current of 5uA rather than 4.5uA. This increased slew rate from 7V/us to 8V/us, and increased maxmimum closed loop gain from 58.5dB to 59.6dB.
@@ -96,7 +96,7 @@ This is of course, no surprise.
 I then increased MillerC until the spiking and instability problems were much smaller, which happened at 0.8pF. Most of the characteristics were pretty much the same:
 - Maximum closed loop gain decreased by 0.04dB
 - Maximum open loop gain decreased by 1.5dB
-- GBW decreased by 0.5MHz
+- BW decreased by 0.5MHz
 
 But 2 characteristics that changed significantly were
 - Slew rate decreased by 2V/us to 6V/us
@@ -124,12 +124,12 @@ Finally, I redid the tests for the circuit post layout. I then compared the data
 
 
 # Summary
-| Iteration                 | Max Closed Loop Gain (dB) | GBW (MHz) | SR (V/us) |
+| Iteration                 | Max Closed Loop Gain (dB) | BW (MHz)  | SR (V/us) |
 | ------------------------- | ------------------------- | --------- | --------- |
-| C_m = 3pF, Tail I = 30uA  | 57                      | ~4          | ~9        |
-| C_m = 0.5pF, Tail I = 5uA | 58.5                    | ~4.5        | ~7        |
-| C_m = 0.45pF, Tail I = 5uA| 59.6                    | ~4.5        | ~8        |
-| C_m = 0.8pF, Tail I = 8uA | 59.2                    | ~4.5        | ~6        |
+| C_m = 3pF, Tail I = 30uA  | 57                        | ~4        | ~9        |
+| C_m = 0.5pF, Tail I = 5uA | 58.5                      | ~4.5      | ~7        |
+| C_m = 0.45pF, Tail I = 5uA| 59.6                      | ~4.5      | ~8        |
+| C_m = 0.8pF, Tail I = 8uA | 59.2                      | ~4.5      | ~6        |
 
 1. Miller C = 3pF, tail current = 30uA
 2. Miller C = 0.5pF, tail current = 5uA
@@ -137,8 +137,8 @@ Finally, I redid the tests for the circuit post layout. I then compared the data
 3. Miller C = 0.45pF, tail current = 5uA
     Increasing the tail current above what it calculated value is leads to an increase in slew rate from 7V/us to 8V/us, and increased maxmimum closed loop gain from 58.5dB to 59.6dB.
 4. Miller C = 0.8pF, tail current = 8uA
-   Finally, I increased the Miller compensation until the spiking on the square wave outputs were virtually gone. This however, led to a dro pin SR until 6V/us, and a drop in GBW by 0.5MHz.
+   Finally, I increased the Miller compensation until the spiking on the square wave outputs were virtually gone. This however, led to a dro pin SR until 6V/us, and a drop in BW by 0.5MHz.
 5. Miller C = 0.8pF, tail current = 8uA, post layout, with parasitic elements
    Finally I did my postlayout sim to see how the charactersitics would be affected by parasitics. Everything seemed, for the most part the same. The only significant difference was frequency response past the first 2 poles (?)
 
-As Miller compensation decreases, so does SR, along with the stability of the system (as can be seen from the spiking appearing when C_m is decreaased). The drop in SR can be somewhat counteracted by increasing tail current independent of Miller compensation. A decrease in Miller compensation increases the GBW.
+As Miller compensation decreases, so does SR, along with the stability of the system (as can be seen from the spiking appearing when C_m is decreaased). The drop in SR can be somewhat counteracted by increasing tail current independent of Miller compensation. A decrease in Miller compensation increases the BW.
